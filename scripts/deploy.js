@@ -1,7 +1,10 @@
 // imports
 
 // async main
-async function main() { }
+async function main() { 
+  // HTTP://127.0.0.1:7545
+  console.log('hi');
+}
 
 // main
 main()
