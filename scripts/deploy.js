@@ -21,8 +21,8 @@ async function main() {
     const chainId = await provider.getNetwork().then(network => network.chainId);
 
     const tx = {
-        nonce: 5,
-        gasPrice: 20000000000, // Use parseUnits to convert to Wei
+        nonce: 0,
+        gasPrice: 2000000000, // Use parseUnits to convert to Wei
         gasLimit: 6721975,
         to: null,
         value: 0,
