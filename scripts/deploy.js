@@ -7,7 +7,7 @@ async function main() {
         "http://0.0.0.0:8545"
     );
     const wallet = new ethers.Wallet(
-        "0x1e049a6503d352bfad84176e83f606eca280de9bf50c769d272e859954b589d1",
+        "0x96ec55b6d24294f77600656ae8b52e6ecebd88c159907ee4d39121ea4c9ec74d",
         provider
     );
 
@@ -20,14 +20,19 @@ async function main() {
     // Use the correct chainId for the network you're using
     const chainId = await provider.getNetwork().then(network => network.chainId);
 
+    const nonce = await provider.getTransactionCount(wallet.address);
+
+    const gasPrice = ethers.parseUnits("2", "gwei"); // Convert to Wei
+    const value = ethers.parseEther("0"); // Convert to Wei
+
     const tx = {
-        nonce: 0,
-        gasPrice: 2000000000, // Use parseUnits to convert to Wei
+        nonce: nonce,
+        gasPrice: gasPrice,
         gasLimit: 6721975,
         to: null,
-        value: 0,
-        data: bytecode, // Use the properly hex-encoded bytecode here
-        chainId: chainId, // Use the actual chainId of the network
+        value: value,
+        data: bytecode,
+        chainId: chainId,
     };
     
     const sentTxResponse = await wallet.sendTransaction(tx);
