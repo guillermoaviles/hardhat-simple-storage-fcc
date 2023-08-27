@@ -7,7 +7,7 @@ async function main() {
         "http://0.0.0.0:8545"
     );
     const wallet = new ethers.Wallet(
-        "0x96ec55b6d24294f77600656ae8b52e6ecebd88c159907ee4d39121ea4c9ec74d",
+        "0x203d07f80576b129b65c256c51ea0f8bdf3cab75af6021b799dcca1125c71ea8",
         provider
     );
 
@@ -25,19 +25,26 @@ async function main() {
     const gasPrice = ethers.parseUnits("2", "gwei"); // Convert to Wei
     const value = ethers.parseEther("0"); // Convert to Wei
 
-    const tx = {
-        nonce: nonce,
-        gasPrice: gasPrice,
-        gasLimit: 6721975,
-        to: null,
-        value: value,
-        data: bytecode,
-        chainId: chainId,
-    };
+
+    const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
+    console.log('Deploying, please wait...');
+    const contract = await contractFactory.deploy();
+    const transactionReceipt = await contract.deploymentTransaction().wait(1);
+    console.log('transactionReceipt: ', transactionReceipt);
+
+    // const tx = {
+    //     nonce: nonce,
+    //     gasPrice: gasPrice,
+    //     gasLimit: 6721975,
+    //     to: null,
+    //     value: value,
+    //     data: bytecode,
+    //     chainId: chainId,
+    // };
     
-    const sentTxResponse = await wallet.sendTransaction(tx);
-    await sentTxResponse.wait(1);
-    console.log('sentTxResponse', sentTxResponse);
+    // const sentTxResponse = await wallet.sendTransaction(tx);
+    // await sentTxResponse.wait(1);
+    // console.log('sentTxResponse', sentTxResponse);
 }
 
 main()
