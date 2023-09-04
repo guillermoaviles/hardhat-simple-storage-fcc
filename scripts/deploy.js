@@ -48,7 +48,7 @@ async function main() {
 
     const currentFavoriteNumber = await contract.retrieve();
 
-    console.log('currentFavoriteNumber', currentFavoriteNumber);
+    console.log('currentFavoriteNumber', currentFavoriteNumber.toString());
 }
 
 main()
