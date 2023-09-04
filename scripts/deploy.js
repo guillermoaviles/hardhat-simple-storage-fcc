@@ -1,13 +1,14 @@
 const { ethers } = require("ethers");
 const fs = require("fs-extra");
+require("dotenv").config();
 
 async function main() {
     console.log("hi");
     const provider = new ethers.JsonRpcProvider(
-        "http://0.0.0.0:8545"
+        process.env.RPC_URL
     );
     const wallet = new ethers.Wallet(
-        "0x2d1973dc5978fc006cd688eb3aebd3172011e0d81faad080c1880901d9f6db4f",
+        process.env.PRIVATE_KEY,
         provider
     );
 
@@ -58,6 +59,6 @@ async function main() {
 main()
     .then(() => process.exit(0))
     .catch((error) => {
-        console.error(error);
+        console.error(error);   
         process.exit(1);
     });
