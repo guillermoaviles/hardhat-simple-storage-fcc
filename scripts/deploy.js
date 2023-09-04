@@ -7,7 +7,7 @@ async function main() {
         "http://0.0.0.0:8545"
     );
     const wallet = new ethers.Wallet(
-        "0x203d07f80576b129b65c256c51ea0f8bdf3cab75af6021b799dcca1125c71ea8",
+        "0x2d1973dc5978fc006cd688eb3aebd3172011e0d81faad080c1880901d9f6db4f",
         provider
     );
 
@@ -45,6 +45,10 @@ async function main() {
     // const sentTxResponse = await wallet.sendTransaction(tx);
     // await sentTxResponse.wait(1);
     // console.log('sentTxResponse', sentTxResponse);
+
+    const currentFavoriteNumber = await contract.retrieve();
+
+    console.log('currentFavoriteNumber', currentFavoriteNumber);
 }
 
 main()
