@@ -31,6 +31,7 @@ async function main() {
     console.log('Deploying, please wait...');
     const contract = await contractFactory.deploy();
     await contract.deploymentTransaction().wait(1);
+    console.log(`Contract Address: ${contract.address}`);
     
 
     // const tx = {
